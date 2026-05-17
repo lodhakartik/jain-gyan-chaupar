@@ -9,10 +9,12 @@ import { useLokEditor } from "../store/lokEditorStore";
 
 export default function Board() {
   const players = useGame((s) => s.players);
+  const currentPlayerIndex = useGame((s) => s.currentPlayerIndex);
   const boardShape = useGame((s) => s.boardShape);
   const layout = useMemo(() => getLayout(boardShape), [boardShape]);
   const lokEditorEnabled = useLokEditor((s) => s.enabled);
   const toggleLokEditor = useLokEditor((s) => s.toggle);
+  const activePlayerId = players[currentPlayerIndex]?.id;
 
   const occupancy = useMemo(() => {
     const map = new Map<number, Player[]>();
@@ -38,7 +40,7 @@ export default function Board() {
 
       {/* Player tokens rendered above the snakes/ladders */}
       <div className="absolute inset-1.5 sm:inset-2 pointer-events-none">
-        <TokenLayer layout={layout} occupancy={occupancy} />
+        <TokenLayer layout={layout} occupancy={occupancy} activePlayerId={activePlayerId} />
       </div>
     </div>
   );
@@ -159,9 +161,11 @@ function Cell({ square, occupants: _occupants }: { square: number; occupants: Pl
 function TokenLayer({
   layout,
   occupancy,
+  activePlayerId,
 }: {
   layout: BoardLayout;
   occupancy: Map<number, Player[]>;
+  activePlayerId?: Player["id"];
 }) {
   const entries: { square: number; players: Player[] }[] = [];
   occupancy.forEach((players, square) => entries.push({ square, players }));
@@ -192,7 +196,7 @@ function TokenLayer({
               <span
                 key={p.id}
                 title={p.name}
-                className="absolute w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-parchment ring-1 ring-black/5 shadow-[0_3px_0_rgba(58,31,14,0.18),0_6px_14px_rgba(58,31,14,0.25)] flex items-center justify-center text-lg sm:text-2xl leading-none select-none"
+                className={`absolute w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-parchment ring-1 ring-black/5 shadow-[0_3px_0_rgba(58,31,14,0.18),0_6px_14px_rgba(58,31,14,0.25)] flex items-center justify-center text-lg sm:text-2xl leading-none select-none ${p.id === activePlayerId ? 'active-token-glow' : ''}`}
                 style={{
                   borderWidth: 2,
                   borderStyle: "solid",
