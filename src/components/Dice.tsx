@@ -49,6 +49,11 @@ export default function Dice() {
 
   return (
     <div className="flex flex-col items-center gap-3">
+      {isComputerTurn && !rolling && (
+        <div className="text-saffron text-sm uppercase tracking-[0.2em] -mb-1">
+          <ThinkingDots label="Thinking" />
+        </div>
+      )}
       <div
         className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-parchment border-2 border-ink/30 shadow-xl grid grid-cols-3 grid-rows-3 p-2 ${
           rolling ? "dice-rolling" : ""
@@ -77,8 +82,19 @@ export default function Dice() {
         disabled={disabled}
         className={`btn-primary w-32 min-h-[44px] text-lg ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
       >
-        {rolling ? "Rolling…" : isComputerTurn ? "Computer…" : "Roll Dice"}
+        {rolling ? "Rolling…" : isComputerTurn ? <ThinkingDots label="Computer" /> : "Roll Dice"}
       </button>
     </div>
+  );
+}
+
+function ThinkingDots({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center gap-1">
+      <span>{label}</span>
+      <span className="thinking-dot [animation-delay:0ms]">.</span>
+      <span className="thinking-dot [animation-delay:200ms]">.</span>
+      <span className="thinking-dot [animation-delay:400ms]">.</span>
+    </span>
   );
 }

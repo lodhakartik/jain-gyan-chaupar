@@ -44,6 +44,15 @@ body {
 }
 .dice-rolling { animation: diceShake 0.55s ease-in-out infinite; }
 
+@keyframes thinkingPulse {
+  0%, 100% { opacity: 0.2; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+}
+.thinking-dot {
+  display: inline-block;
+  animation: thinkingPulse 1.4s ease-in-out infinite;
+}
+
 @keyframes active-pulse {
   0%, 100% {
     box-shadow:
