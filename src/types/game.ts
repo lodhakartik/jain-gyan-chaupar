@@ -7,6 +7,9 @@ export interface Player {
   color: string;
   position: number;
   token: string;
+  rolls?: number;
+  punyas?: number;
+  paaps?: number;
 }
 
 export type Severity = "small" | "medium" | "big";

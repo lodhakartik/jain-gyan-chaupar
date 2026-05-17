@@ -105,7 +105,7 @@ export const useGame = create<GameState>()(
 
   setupPlayers: (players) =>
     set({
-      players,
+      players: players.map((p) => ({ rolls: 0, punyas: 0, paaps: 0, ...p })),
       currentPlayerIndex: 0,
       dice: null,
       rolling: false,
@@ -138,6 +138,13 @@ export const useGame = create<GameState>()(
     set({ dice: roll, rolling: false, moving: true });
 
     appendLog(set, get, `${player.name} rolled a ${roll}.`, "info");
+
+    // Tally this dice roll for the end-of-game summary.
+    set({
+      players: get().players.map((p) =>
+        p.id === player.id ? { ...p, rolls: (p.rolls ?? 0) + 1 } : p
+      ),
+    });
 
     // Move step by step for visual feedback
     let target = player.position + roll;
@@ -173,6 +180,12 @@ export const useGame = create<GameState>()(
         punyaResolver = resolve;
         set({ activePunya: ladder });
       });
+      // Tally this punya for the end-of-game summary.
+      set({
+        players: get().players.map((p) =>
+          p.id === player.id ? { ...p, punyas: (p.punyas ?? 0) + 1 } : p
+        ),
+      });
       await stepTo(set, get, player.id, ladder.to);
     } else if (snake) {
       const name = snake.script ? `${snake.script} (${snake.label})` : snake.label;
@@ -188,6 +201,12 @@ export const useGame = create<GameState>()(
       await new Promise<void>((resolve) => {
         paapResolver = resolve;
         set({ activePaap: snake });
+      });
+      // Tally this paap for the end-of-game summary.
+      set({
+        players: get().players.map((p) =>
+          p.id === player.id ? { ...p, paaps: (p.paaps ?? 0) + 1 } : p
+        ),
       });
       await stepTo(set, get, player.id, snake.to);
     }
@@ -230,7 +249,13 @@ export const useGame = create<GameState>()(
   },
 
   newGameSameSetup: () => {
-    const fresh = get().players.map((p) => ({ ...p, position: 0 }));
+    const fresh = get().players.map((p) => ({
+      ...p,
+      position: 0,
+      rolls: 0,
+      punyas: 0,
+      paaps: 0,
+    }));
     set({
       players: fresh,
       currentPlayerIndex: 0,

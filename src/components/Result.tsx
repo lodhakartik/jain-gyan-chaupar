@@ -105,6 +105,14 @@ export default function Result() {
         >
           {winner.name} wins
         </h2>
+        <div
+          className="mt-3 flex justify-center gap-5 text-sm text-ink/70 reveal-fade-up"
+          style={{ animationDuration: '600ms', animationDelay: '500ms' } as React.CSSProperties}
+        >
+          <span>🎲 {winner.rolls ?? 0} rolls</span>
+          <span>🪜 {winner.punyas ?? 0} punya</span>
+          <span>🐍 {winner.paaps ?? 0} paap</span>
+        </div>
         <p
           className="font-display text-2xl text-saffron mt-1 reveal-fade-up"
           style={
@@ -142,18 +150,25 @@ export default function Result() {
             {ranking.map((p, i) => (
               <li
                 key={p.id}
-                className="flex items-center justify-between bg-ink/5 rounded-lg px-3 py-2 text-sm"
+                className="flex flex-col bg-ink/5 rounded-lg px-3 py-2 text-sm"
               >
-                <span className="flex items-center gap-2">
-                  <span className="font-mono text-ink/50 w-5">{i + 1}.</span>
-                  <span
-                    className="w-3 h-3 rounded-full border border-parchment shadow"
-                    style={{ background: p.color }}
-                  />
-                  {p.name}
-                  <span className="text-ink/50 text-xs">({p.kind})</span>
-                </span>
-                <span className="font-mono">{p.position}/84</span>
+                <div className="flex items-center justify-between w-full">
+                  <span className="flex items-center gap-2">
+                    <span className="font-mono text-ink/50 w-5">{i + 1}.</span>
+                    <span
+                      className="w-3 h-3 rounded-full border border-parchment shadow"
+                      style={{ background: p.color }}
+                    />
+                    {p.name}
+                    <span className="text-ink/50 text-xs">({p.kind})</span>
+                  </span>
+                  <span className="font-mono">{p.position}/84</span>
+                </div>
+                <div className="mt-1 ml-7 text-xs text-ink/60 flex flex-wrap gap-x-3 gap-y-1">
+                  <span title="Dice rolls">🎲 {p.rolls ?? 0}</span>
+                  <span title="Ladders climbed (punya)">🪜 {p.punyas ?? 0}</span>
+                  <span title="Snakes fallen on (paap)">🐍 {p.paaps ?? 0}</span>
+                </div>
               </li>
             ))}
           </ol>
