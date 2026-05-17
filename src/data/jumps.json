@@ -20,11 +20,11 @@
     { "from": 65, "to": 62, "label": "Krodha",           "script": "क्रोध",           "hint": "Anger",            "severity": "small",
       "doha": "क्रोध अगन जब मन जले, बुद्धि जाए हार।\nशांति सीढ़ी छोड़कर, गिरता जीव अपार॥",
       "audio": "/audio/paap/5Krodh.mp3" },
-    { "from": 66, "to": 61, "label": "Raga",             "script": "राग",            "hint": "Attachment",       "severity": "small",
+    { "from": 63, "to": 50, "label": "Raga",             "script": "राग",            "hint": "Attachment",       "severity": "small",
       "doha": "राग बंधन मोह का, मीठा दिखे विषाद।\nजिससे मन चिपकता रहे, छूटे आत्म-प्रसाद॥" },
-    { "from": 79, "to": 76, "label": "Dvesha",           "script": "द्वेष",           "hint": "Aversion",         "severity": "small",
+    { "from": 80, "to": 75, "label": "Dvesha",           "script": "द्वेष",           "hint": "Aversion",         "severity": "small",
       "doha": "द्वेष जहर सा मन भरे, शांति करे नाश।\nसमता से जो दूर हो, पाए भव की प्यास॥" },
-    { "from": 80, "to": 75, "label": "Lobha",            "script": "लोभ",            "hint": "Greed",            "severity": "small",
+    { "from": 73, "to": 68, "label": "Lobha",            "script": "लोभ",            "hint": "Greed",            "severity": "small",
       "doha": "लोभ न माने सीमा कोई, चाहे और अधिक।\nपुण्य मार्ग से दूर हो, जीव बने अशुद्धिक॥" },
 
     { "from": 12, "to": 3,  "label": "Mrushavada",       "script": "मृषावाद",         "hint": "Falsehood",        "severity": "medium",
@@ -34,12 +34,12 @@
       "doha": "कपट छिपाए सत्य को, दिखलाए झूठी चाल।\nमाया में जो जीव फँसे, बढ़े कर्म का जाल॥" },
     { "from": 40, "to": 31, "label": "Abhyakhyana",     "script": "अभ्याख्यान",      "hint": "False accusation", "severity": "medium",
       "doha": "झूठा दोष लगाइए, भारी पाप समान।\nअभ्याख्यान से जीव का, मलिन होवे ज्ञान॥" },
-    { "from": 53, "to": 46, "label": "Mayamrushavada",  "script": "माया-मृषावाद",    "hint": "Deceitful lying",  "severity": "medium",
+    { "from": 35, "to": 22, "label": "Mayamrushavada",  "script": "माया-मृषावाद",    "hint": "Deceitful lying",  "severity": "medium",
       "doha": "कपट मिले जब झूठ से, भारी पाप प्रहार।\nमाया-मृषा वचन से, गिरता जीव अपार॥" },
-    { "from": 68, "to": 59, "label": "Parigraha",        "script": "परिग्रह",        "hint": "Possessiveness",   "severity": "medium",
+    { "from": 70, "to": 57, "label": "Parigraha",        "script": "परिग्रह",        "hint": "Possessiveness",   "severity": "medium",
       "doha": "मेरा-मेरा जो करे, बाँधे मन में मोह।\nपरिग्रह की गांठ से, मिटे न अंतर-द्रोह॥",
       "audio": "/audio/paap/6Parigrah.mp3" },
-    { "from": 82, "to": 73, "label": "Maithuna",         "script": "मैथुन",           "hint": "Unchastity",       "severity": "medium",
+    { "from": 77, "to": 64, "label": "Maithuna",         "script": "मैथुन",           "hint": "Unchastity",       "severity": "medium",
       "doha": "इन्द्रिय सुख में फँस गया, भूला आत्म विचार।\nअसंयम के पथ चले, बढ़े भवसंसार॥",
       "audio": "/audio/paap/4Maithun.mp3" },
 
@@ -54,11 +54,11 @@
   ],
 
   "ladders": [
-    { "from": 5,  "to": 10, "label": "Paan Punya",      "script": "पान पुण्य",      "hint": "Charity of drink",    "severity": "small",
+    { "from": 1,  "to": 14, "label": "Paan Punya",      "script": "पान पुण्य",      "hint": "Charity of drink",    "severity": "small",
       "doha": "प्यासे को जल दीजिए, मीठा सेवा भाव।\nपान पुण्य की सीढ़ी से, बढ़े आत्म प्रभाव॥" },
-    { "from": 19, "to": 24, "label": "Vastra Punya",    "script": "वस्त्र पुण्य",    "hint": "Charity of clothing", "severity": "small",
+    { "from": 8,  "to": 21, "label": "Vastra Punya",    "script": "वस्त्र पुण्य",    "hint": "Charity of clothing", "severity": "small",
       "doha": "तन ढकने को वस्त्र दो, सेवा हो निष्काम।\nवस्त्र पुण्य से जीव को, मिलता शुभ परिणाम॥" },
-    { "from": 33, "to": 38, "label": "Shayan Punya",    "script": "शयन पुण्य",      "hint": "Charity of bedding",  "severity": "small",
+    { "from": 24, "to": 33, "label": "Shayan Punya",    "script": "शयन पुण्य",      "hint": "Charity of bedding",  "severity": "small",
       "doha": "थके हुए को आसरा, विश्राम का उपहार।\nशयन पुण्य से जीव का, होता शुभ उद्धार॥" },
 
     { "from": 4,  "to": 11, "label": "Anna Punya",      "script": "अन्न पुण्य",      "hint": "Charity of food",     "severity": "medium",
@@ -72,7 +72,7 @@
 
     { "from": 15, "to": 28, "label": "Mana Punya",      "script": "मन पुण्य",       "hint": "Pure thought",        "severity": "big",
       "doha": "मन में रखो शुभ भावना, सबके लिए प्यार।\nमन पुण्य की सीढ़ी चढ़े, मिटे मन अंधकार॥" },
-    { "from": 30, "to": 41, "label": "Namaskar Punya",  "script": "नमस्कार पुण्य",   "hint": "Humility, vinay",     "severity": "big",
+    { "from": 29, "to": 42, "label": "Namaskar Punya",  "script": "नमस्कार पुण्य",   "hint": "Humility, vinay",     "severity": "big",
       "doha": "विनय भाव से नमन करो, छोड़ो अपना मान।\nनमस्कार की सीढ़ी से, बढ़े आत्म ज्ञान॥" }
   ]
 }
