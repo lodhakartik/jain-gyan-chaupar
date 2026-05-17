@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { useGame } from "../store/gameStore";
 import { bumpPlayCount } from "../lib/playCount";
+import RulesModal from "./RulesModal";
 
 export default function Welcome() {
   const goTo = useGame((s) => s.goTo);
+  const [rulesOpen, setRulesOpen] = useState(false);
 
   const handleStart = () => {
     bumpPlayCount();
@@ -35,7 +38,7 @@ export default function Welcome() {
           </button>
           <button
             className="btn-ghost"
-            onClick={() => alert(rulesText)}
+            onClick={() => setRulesOpen(true)}
           >
             Rules
           </button>
@@ -43,6 +46,7 @@ export default function Welcome() {
 
         <p className="mt-8 text-xs text-ink/50">Play offline, on one device, 1 to 6 players.</p>
       </div>
+      <RulesModal open={rulesOpen} onClose={() => setRulesOpen(false)} />
     </div>
   );
 }
@@ -55,14 +59,3 @@ function Stat({ n, label }: { n: string; label: string }) {
     </div>
   );
 }
-
-const rulesText = `Rules
-─────
-• 1 to 6 players take turns rolling a single die.
-• Move your token forward by the dice value.
-• Land on a Punya (ladder) → climb up.
-• Land on a Paap (snake) → slide down.
-• To win, you must land exactly on square 84 (Moksha).
-• If your roll overshoots 84, you bounce back.
-
-Players can be Human or Computer in any mix.`;
