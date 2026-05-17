@@ -174,10 +174,13 @@ function TokenLayer({
         const cellH = 100 / layout.height;
         const leftPct = ((xy.x - 0.5) / layout.width) * 100;
         const topPct = ((xy.y - 0.5) / layout.height) * 100;
+        const showOverflow = players.length > 4;
+        const visible = showOverflow ? players.slice(0, 3) : players.slice(0, 4);
+        const overflowCount = players.length - 3;
         return (
           <div
             key={square}
-            className="absolute flex flex-wrap gap-0.5 justify-end items-start p-1"
+            className="absolute"
             style={{
               left: `${leftPct}%`,
               top: `${topPct}%`,
@@ -185,16 +188,37 @@ function TokenLayer({
               height: `${cellH}%`,
             }}
           >
-            {players.slice(0, 6).map((p) => (
+            {visible.map((p, i) => (
               <span
                 key={p.id}
                 title={p.name}
-                className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-parchment shadow-md flex items-center justify-center text-base sm:text-xl leading-none select-none"
-                style={{ borderWidth: 2, borderStyle: "solid", borderColor: p.color }}
+                className="absolute w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-parchment ring-1 ring-black/5 shadow-[0_3px_0_rgba(58,31,14,0.18),0_6px_14px_rgba(58,31,14,0.25)] flex items-center justify-center text-lg sm:text-2xl leading-none select-none"
+                style={{
+                  borderWidth: 2,
+                  borderStyle: "solid",
+                  borderColor: p.color,
+                  left: `${i * 14}px`,
+                  top: `${i * 6}px`,
+                }}
               >
                 <span>{p.token ?? ""}</span>
               </span>
             ))}
+            {showOverflow && (
+              <span
+                title={`+${overflowCount} more`}
+                className="absolute w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-parchment ring-1 ring-black/5 shadow-[0_3px_0_rgba(58,31,14,0.18),0_6px_14px_rgba(58,31,14,0.25)] flex items-center justify-center text-lg sm:text-2xl leading-none select-none font-display"
+                style={{
+                  borderWidth: 2,
+                  borderStyle: "solid",
+                  borderColor: "#C9A227",
+                  left: `${3 * 14}px`,
+                  top: `${3 * 6}px`,
+                }}
+              >
+                <span>+{overflowCount}</span>
+              </span>
+            )}
           </div>
         );
       })}
