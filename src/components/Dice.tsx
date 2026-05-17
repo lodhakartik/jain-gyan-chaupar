@@ -55,6 +55,8 @@ export default function Dice() {
         </div>
       )}
       <div
+        role="img"
+        aria-label={dice ? `Dice showing ${dice}` : 'Dice — ready to roll'}
         className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-parchment border-2 border-ink/30 shadow-xl grid grid-cols-3 grid-rows-3 p-2 ${
           rolling ? "dice-rolling" : ""
         }`}
@@ -80,6 +82,7 @@ export default function Dice() {
       <button
         onClick={() => void roll()}
         disabled={disabled}
+        aria-label={disabled ? (isComputerTurn ? 'Waiting for computer player' : 'Dice rolling') : `Roll dice for ${player?.name ?? 'next player'}`}
         className={`btn-primary w-32 min-h-[44px] text-lg ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
       >
         {rolling ? "Rolling…" : isComputerTurn ? <ThinkingDots label="Computer" /> : "Roll Dice"}

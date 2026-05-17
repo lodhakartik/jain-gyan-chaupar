@@ -33,12 +33,13 @@ export default function Welcome() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button className="btn-primary min-h-[44px]" onClick={handleStart}>
+          <button className="btn-primary min-h-[44px]" onClick={handleStart} aria-label="Start a new game">
             Start Game
           </button>
           <button
             className="btn-ghost min-h-[44px]"
             onClick={() => setRulesOpen(true)}
+            aria-label="Open rules"
           >
             Rules
           </button>

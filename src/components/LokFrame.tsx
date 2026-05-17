@@ -81,6 +81,7 @@ export default function LokFrame({
       <svg
         viewBox={`0 0 ${W} ${H}`}
         preserveAspectRatio="none"
+        aria-hidden="true"
         className="absolute inset-0 w-full h-full pointer-events-none"
       >
         <defs>

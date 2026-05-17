@@ -30,7 +30,7 @@ export default function EventPanel() {
 
       <div>
         <div className="text-sm uppercase tracking-wider text-ink/50 mb-2">Players</div>
-        <ul className="space-y-1.5 text-base">
+        <ul aria-label="Players in turn order" className="space-y-1.5 text-base">
           {players.map((p, i) => (
             <li
               key={p.id}
@@ -56,7 +56,7 @@ export default function EventPanel() {
 
       <div className="flex-1 min-h-0">
         <div className="text-sm uppercase tracking-wider text-ink/50 mb-2">Event Log</div>
-        <div className="overflow-y-auto pr-1 max-h-48 sm:max-h-72 space-y-1.5 text-base">
+        <div role="log" aria-live="polite" aria-relevant="additions" className="overflow-y-auto pr-1 max-h-48 sm:max-h-72 space-y-1.5 text-base">
           {log.length === 0 && (
             <div className="text-ink/50 italic">Roll the dice to begin…</div>
           )}

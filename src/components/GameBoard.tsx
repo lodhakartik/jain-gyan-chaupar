@@ -23,6 +23,25 @@ export default function GameBoard() {
     }
   }, [idx, players, rolling, moving, winner, roll]);
 
+  // Keyboard shortcut: Space or Enter rolls the dice for the active human player,
+  // as long as no modal is open and nothing else has focus.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== " " && e.key !== "Enter") return;
+      const state = useGame.getState();
+      if (state.activePaap !== null || state.activePunya !== null) return;
+      if (document.activeElement !== document.body) return;
+      const p = players[idx];
+      const isComputerTurn = p?.kind === "computer";
+      if (isComputerTurn) return;
+      if (rolling || moving || winner) return;
+      e.preventDefault();
+      void roll();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [roll, players, idx, rolling, moving, winner]);
+
   return (
     <div className="min-h-screen px-1 sm:px-6 py-2 sm:py-6">
       <header className="flex items-center justify-between mb-2 sm:mb-4 max-w-6xl mx-auto px-2 sm:px-0">

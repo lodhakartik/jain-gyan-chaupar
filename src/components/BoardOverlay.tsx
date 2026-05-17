@@ -46,6 +46,7 @@ export default function BoardOverlay({ layout }: { layout: BoardLayout }) {
     <svg
       viewBox={`0 0 ${layout.width} ${layout.height}`}
       preserveAspectRatio="none"
+      aria-hidden="true"
       className="absolute inset-0 w-full h-full pointer-events-none"
       style={{ overflow: "visible" }}
     >

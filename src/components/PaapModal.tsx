@@ -13,6 +13,9 @@ export default function PaapModal() {
       onClick={dismiss}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Paap doha"
         className="card relative w-full max-w-md p-6 sm:p-8 text-center"
         onClick={(e) => e.stopPropagation()}
       >

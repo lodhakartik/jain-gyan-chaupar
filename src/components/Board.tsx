@@ -148,9 +148,13 @@ function Cell({ square, occupants: _occupants }: { square: number; occupants: Pl
     ? `${ladder.script ?? ladder.label} — ${ladder.hint ?? ""}`
     : undefined;
 
+  const ariaLabel = `Square ${square}${snake ? ', snake' : ladder ? ', ladder' : ''}${tooltip ? `, ${tooltip}` : ''}`;
+
   return (
     <div
       title={tooltip}
+      role="gridcell"
+      aria-label={ariaLabel}
       className={`relative aspect-square rounded-md sm:rounded-lg border border-ink/10 ${bg} flex flex-col p-1 sm:p-1.5 overflow-hidden`}
     >
       <div className="text-xs sm:text-sm font-bold text-ink/60">{square}</div>
@@ -196,6 +200,8 @@ function TokenLayer({
               <span
                 key={p.id}
                 title={p.name}
+                role="img"
+                aria-label={`${p.name}'s token on square ${square}`}
                 className={`absolute w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-parchment ring-1 ring-black/5 shadow-[0_3px_0_rgba(58,31,14,0.18),0_6px_14px_rgba(58,31,14,0.25)] flex items-center justify-center text-lg sm:text-2xl leading-none select-none ${p.id === activePlayerId ? 'active-token-glow' : ''}`}
                 style={{
                   borderWidth: 2,
@@ -211,6 +217,8 @@ function TokenLayer({
             {showOverflow && (
               <span
                 title={`+${overflowCount} more`}
+                role="img"
+                aria-label={`${overflowCount} more players on this square`}
                 className="absolute w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-parchment ring-1 ring-black/5 shadow-[0_3px_0_rgba(58,31,14,0.18),0_6px_14px_rgba(58,31,14,0.25)] flex items-center justify-center text-lg sm:text-2xl leading-none select-none font-display"
                 style={{
                   borderWidth: 2,
