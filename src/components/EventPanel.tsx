@@ -9,14 +9,14 @@ export default function EventPanel() {
   return (
     <div className="card p-4 sm:p-5 flex flex-col gap-4 h-full">
       <div>
-        <div className="text-xs uppercase tracking-wider text-ink/50">Current Turn</div>
+        <div className="text-sm uppercase tracking-wider text-ink/50">Current Turn</div>
         {current && (
           <div className="mt-1 flex items-center gap-2">
             <span
               className="w-5 h-5 rounded-full border-2 border-parchment shadow"
               style={{ background: current.color }}
             />
-            <span className="font-display text-lg">{current.name}</span>
+            <span className="font-display text-xl">{current.name}</span>
             <span
               className={`chip ${
                 current.kind === "human" ? "bg-saffron text-ink" : "bg-ink text-parchment"
@@ -29,8 +29,8 @@ export default function EventPanel() {
       </div>
 
       <div>
-        <div className="text-xs uppercase tracking-wider text-ink/50 mb-2">Players</div>
-        <ul className="space-y-1.5 text-sm">
+        <div className="text-sm uppercase tracking-wider text-ink/50 mb-2">Players</div>
+        <ul className="space-y-1.5 text-base">
           {players.map((p, i) => (
             <li
               key={p.id}
@@ -55,8 +55,8 @@ export default function EventPanel() {
       </div>
 
       <div className="flex-1 min-h-0">
-        <div className="text-xs uppercase tracking-wider text-ink/50 mb-2">Event Log</div>
-        <div className="overflow-y-auto pr-1 max-h-48 sm:max-h-72 space-y-1.5 text-sm">
+        <div className="text-sm uppercase tracking-wider text-ink/50 mb-2">Event Log</div>
+        <div className="overflow-y-auto pr-1 max-h-48 sm:max-h-72 space-y-1.5 text-base">
           {log.length === 0 && (
             <div className="text-ink/50 italic">Roll the dice to begin…</div>
           )}

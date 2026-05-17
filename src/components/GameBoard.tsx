@@ -27,10 +27,10 @@ export default function GameBoard() {
     <div className="min-h-screen px-1 sm:px-6 py-2 sm:py-6">
       <header className="flex items-center justify-between mb-2 sm:mb-4 max-w-6xl mx-auto px-2 sm:px-0">
         <div>
-          <div className="text-saffron text-[10px] tracking-[0.3em]">JAIN GYAN CHAUPAR</div>
-          <h1 className="font-display text-xl sm:text-2xl text-crimson font-bold">84 Jeev Yoni</h1>
+          <div className="text-saffron text-xs sm:text-sm tracking-[0.3em]">JAIN GYAN CHAUPAR</div>
+          <h1 className="font-display text-2xl sm:text-3xl text-crimson font-bold">84 Jeev Yoni</h1>
         </div>
-        <button onClick={resetGame} className="btn-ghost text-sm">
+        <button onClick={resetGame} className="btn-ghost text-sm min-h-[44px]">
           Exit
         </button>
       </header>

@@ -94,7 +94,7 @@ export default function RulesModal({ open, onClose }: RulesModalProps) {
         </ul>
 
         <div className="mt-6 flex justify-end">
-          <button className="btn-primary" onClick={onClose}>
+          <button className="btn-primary min-h-[44px]" onClick={onClose}>
             Got it
           </button>
         </div>

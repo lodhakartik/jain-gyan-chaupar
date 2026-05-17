@@ -50,7 +50,7 @@ export default function Dice() {
   return (
     <div className="flex flex-col items-center gap-3">
       <div
-        className={`w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-parchment border-2 border-ink/30 shadow-xl grid grid-cols-3 grid-rows-3 p-2 ${
+        className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-parchment border-2 border-ink/30 shadow-xl grid grid-cols-3 grid-rows-3 p-2 ${
           rolling ? "dice-rolling" : ""
         }`}
       >
@@ -65,7 +65,7 @@ export default function Dice() {
             const filled = PIPS[dice]?.some(([pr, pc]) => pr === r && pc === c);
             return (
               <div key={i} className="flex items-center justify-center">
-                {filled && <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-ink" />}
+                {filled && <span className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-ink" />}
               </div>
             );
           })
@@ -75,7 +75,7 @@ export default function Dice() {
       <button
         onClick={() => void roll()}
         disabled={disabled}
-        className={`btn-primary w-32 ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`btn-primary w-32 min-h-[44px] text-lg ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
       >
         {rolling ? "Rolling…" : isComputerTurn ? "Computer…" : "Roll Dice"}
       </button>

@@ -153,7 +153,7 @@ function Cell({ square, occupants: _occupants }: { square: number; occupants: Pl
       title={tooltip}
       className={`relative aspect-square rounded-md sm:rounded-lg border border-ink/10 ${bg} flex flex-col p-1 sm:p-1.5 overflow-hidden`}
     >
-      <div className="text-[10px] sm:text-xs font-bold text-ink/60">{square}</div>
+      <div className="text-xs sm:text-sm font-bold text-ink/60">{square}</div>
     </div>
   );
 }

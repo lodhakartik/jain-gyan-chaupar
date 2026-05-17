@@ -42,7 +42,7 @@ export default function PlayerSetup() {
   return (
     <div className="min-h-screen flex items-start sm:items-center justify-center px-4 py-8">
       <div className="card w-full max-w-2xl p-6 sm:p-8">
-        <button onClick={() => goTo("welcome")} className="text-ink/60 hover:text-ink text-sm mb-4">
+        <button onClick={() => goTo("welcome")} className="text-ink/60 hover:text-ink text-sm mb-4 min-h-[44px]">
           ← Back
         </button>
         <h2 className="font-display text-3xl text-crimson font-bold">Player Setup</h2>
@@ -117,7 +117,7 @@ export default function PlayerSetup() {
                 value={d.name}
                 onChange={(e) => update(i, { name: e.target.value })}
                 placeholder={`Player ${i + 1}`}
-                className="flex-1 bg-parchment border border-ink/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-saffron"
+                className="flex-1 bg-parchment border border-ink/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-saffron min-h-[44px]"
               />
               <div className="flex gap-2">
                 <KindToggle
@@ -160,7 +160,7 @@ function KindToggle({
   return (
     <button
       onClick={onClick}
-      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+      className={`px-3 py-1.5 rounded-lg text-sm font-medium transition min-h-[44px] ${
         active ? "bg-saffron text-ink shadow" : "bg-parchment text-ink/70 border border-ink/10"
       }`}
     >

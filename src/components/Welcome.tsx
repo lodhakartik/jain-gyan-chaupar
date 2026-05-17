@@ -33,11 +33,11 @@ export default function Welcome() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button className="btn-primary" onClick={handleStart}>
+          <button className="btn-primary min-h-[44px]" onClick={handleStart}>
             Start Game
           </button>
           <button
-            className="btn-ghost"
+            className="btn-ghost min-h-[44px]"
             onClick={() => setRulesOpen(true)}
           >
             Rules
@@ -54,7 +54,7 @@ export default function Welcome() {
 function Stat({ n, label }: { n: string; label: string }) {
   return (
     <div className="rounded-xl bg-ink/5 py-4">
-      <div className="font-display text-2xl text-crimson">{n}</div>
+      <div className="font-display text-3xl text-crimson">{n}</div>
       <div className="text-ink/70 text-xs uppercase tracking-wider mt-1">{label}</div>
     </div>
   );
