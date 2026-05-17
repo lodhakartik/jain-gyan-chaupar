@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import type { BoardShape, Jump, LogEntry, Player, Screen } from "../types/game";
 import { BOARD_SIZE, findLadder, findSnake } from "../data/board";
 
@@ -69,7 +70,9 @@ const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 let logIdCounter = 0;
 const nextLogId = () => ++logIdCounter;
 
-export const useGame = create<GameState>((set, get) => ({
+export const useGame = create<GameState>()(
+  persist(
+    (set, get) => ({
   screen: "welcome",
   players: [],
   currentPlayerIndex: 0,
@@ -239,7 +242,31 @@ export const useGame = create<GameState>((set, get) => ({
       screen: "game",
     });
   },
-}));
+}),
+    {
+      name: "jain-gyan-chaupar/game-v1",
+      storage: createJSONStorage(() => localStorage),
+      partialize: (s) => ({
+        screen: s.screen,
+        players: s.players,
+        currentPlayerIndex: s.currentPlayerIndex,
+        dice: s.dice,
+        winner: s.winner,
+        log: s.log,
+        boardShape: s.boardShape,
+        exactFinishRule: s.exactFinishRule,
+      }),
+      onRehydrateStorage: () => (state) => {
+        if (!state) return;
+        // Reset any transient flags that survived from a previous session.
+        state.rolling = false;
+        state.moving = false;
+        state.activePaap = null;
+        state.activePunya = null;
+      },
+    },
+  ),
+);
 
 function appendLog(
   set: (partial: Partial<GameState>) => void,
