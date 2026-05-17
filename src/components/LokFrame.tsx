@@ -2,6 +2,7 @@ import { useEffect, useMemo, type ReactNode } from "react";
 import type { BoardLayout } from "../data/boardLayout";
 import { useLokEditor, type SilhouetteCorner } from "../store/lokEditorStore";
 import LokSilhouetteEditor from "./LokSilhouetteEditor";
+import LokRegions from "./LokRegions";
 import lokSilhouetteJson from "../data/lokSilhouette.json";
 
 // Frozen, hand-tuned silhouette corners (right side, top → bottom). When present
@@ -18,6 +19,13 @@ const FROZEN_CORNERS: SilhouetteCorner[] | null =
 // kids' edition, so the top padding can be tight against the apex.
 export const PAD_TOP = 0.6;
 export const PAD_BOTTOM = 0.6;
+// Asymmetric horizontal padding: a wide left gutter holds the Three-Lok
+// annotation glyphs, while the right side stays tight against the silhouette.
+export const PAD_LEFT = 2.4;
+export const PAD_RIGHT = 0.6;
+// Back-compat export. LokSilhouetteEditor still imports PAD_X from this module;
+// keep it equal to the (now legacy) symmetric value so its imports keep
+// resolving. Internally LokFrame uses PAD_LEFT/PAD_RIGHT instead.
 export const PAD_X = 0.6;
 
 export default function LokFrame({
@@ -27,12 +35,12 @@ export default function LokFrame({
   layout: BoardLayout;
   children: ReactNode;
 }) {
-  const W = layout.width + 2 * PAD_X;
+  const W = layout.width + PAD_LEFT + PAD_RIGHT;
   const H = layout.height + PAD_TOP + PAD_BOTTOM;
 
   // Map grid coords (where row 0 = top of grid, col 0 = left of grid) into SVG coords.
-  // Grid origin (0, 0) → SVG (PAD_X, PAD_TOP).
-  const gx = (gridX: number) => gridX + PAD_X;
+  // Grid origin (0, 0) → SVG (PAD_LEFT, PAD_TOP).
+  const gx = (gridX: number) => gridX + PAD_LEFT;
   const gy = (gridY: number) => gridY + PAD_TOP;
 
   // Baseline right-side corners. Prefer the frozen JSON; fall back to the auto-
@@ -68,7 +76,7 @@ export default function LokFrame({
   const silhouette = buildSilhouettePath(activeCorners, layout, gx, gy, 0.18);
 
   // CSS grid block position inside the frame (percent of W × H).
-  const gridLeftPct = (PAD_X / W) * 100;
+  const gridLeftPct = (PAD_LEFT / W) * 100;
   const gridTopPct = (PAD_TOP / H) * 100;
   const gridWidthPct = (layout.width / W) * 100;
   const gridHeightPct = (layout.height / H) * 100;
@@ -113,6 +121,9 @@ export default function LokFrame({
           strokeWidth="0.08"
           strokeLinejoin="round"
         />
+
+        {/* Three-Lok annotation glyphs in the left gutter */}
+        <LokRegions layout={layout} gx={gx} gy={gy} />
 
         {/* Trasanadi — narrow vertical channel down the centre */}
         {layout.hasGap && (
