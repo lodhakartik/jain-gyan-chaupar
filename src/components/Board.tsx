@@ -40,7 +40,7 @@ export default function Board() {
 
       {/* Player tokens rendered above the snakes/ladders */}
       <div className="absolute inset-1.5 sm:inset-2 pointer-events-none">
-        <TokenLayer layout={layout} occupancy={occupancy} activePlayerId={activePlayerId} />
+        <TokenLayer layout={layout} players={players} activePlayerId={activePlayerId} />
       </div>
     </div>
   );
@@ -164,74 +164,41 @@ function Cell({ square, occupants: _occupants }: { square: number; occupants: Pl
 
 function TokenLayer({
   layout,
-  occupancy,
+  players,
   activePlayerId,
 }: {
   layout: BoardLayout;
-  occupancy: Map<number, Player[]>;
+  players: Player[];
   activePlayerId?: Player["id"];
 }) {
-  const entries: { square: number; players: Player[] }[] = [];
-  occupancy.forEach((players, square) => entries.push({ square, players }));
-
   return (
     <div className="relative w-full h-full">
-      {entries.map(({ square, players }) => {
-        const xy = layout.squareToXY(square);
-        const cellW = 100 / layout.width;
-        const cellH = 100 / layout.height;
-        const leftPct = ((xy.x - 0.5) / layout.width) * 100;
-        const topPct = ((xy.y - 0.5) / layout.height) * 100;
-        const showOverflow = players.length > 4;
-        const visible = showOverflow ? players.slice(0, 3) : players.slice(0, 4);
-        const overflowCount = players.length - 3;
+      {players.map((p, i) => {
+        if (p.position < 1) return null;
+        const stackIndex = players
+          .slice(0, i)
+          .filter((other) => other.position === p.position).length;
+        const xy = layout.squareToXY(p.position);
+        const leftPct = (xy.x / layout.width) * 100;
+        const topPct = (xy.y / layout.height) * 100;
         return (
-          <div
-            key={square}
-            className="absolute"
+          <span
+            key={p.id}
+            title={p.name}
+            role="img"
+            aria-label={`${p.name}'s token on square ${p.position}`}
+            className={`token-slide absolute w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-parchment ring-1 ring-black/5 shadow-[0_3px_0_rgba(58,31,14,0.18),0_6px_14px_rgba(58,31,14,0.25)] flex items-center justify-center text-lg sm:text-2xl leading-none select-none ${p.id === activePlayerId ? 'active-token-glow' : ''}`}
             style={{
+              borderWidth: 2,
+              borderStyle: "solid",
+              borderColor: p.color,
               left: `${leftPct}%`,
               top: `${topPct}%`,
-              width: `${cellW}%`,
-              height: `${cellH}%`,
+              transform: `translate(calc(-50% + ${stackIndex * 14}px), calc(-50% + ${stackIndex * 6}px))`,
             }}
           >
-            {visible.map((p, i) => (
-              <span
-                key={p.id}
-                title={p.name}
-                role="img"
-                aria-label={`${p.name}'s token on square ${square}`}
-                className={`absolute w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-parchment ring-1 ring-black/5 shadow-[0_3px_0_rgba(58,31,14,0.18),0_6px_14px_rgba(58,31,14,0.25)] flex items-center justify-center text-lg sm:text-2xl leading-none select-none ${p.id === activePlayerId ? 'active-token-glow' : ''}`}
-                style={{
-                  borderWidth: 2,
-                  borderStyle: "solid",
-                  borderColor: p.color,
-                  left: `${i * 14}px`,
-                  top: `${i * 6}px`,
-                }}
-              >
-                <span>{p.token ?? ""}</span>
-              </span>
-            ))}
-            {showOverflow && (
-              <span
-                title={`+${overflowCount} more`}
-                role="img"
-                aria-label={`${overflowCount} more players on this square`}
-                className="absolute w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-parchment ring-1 ring-black/5 shadow-[0_3px_0_rgba(58,31,14,0.18),0_6px_14px_rgba(58,31,14,0.25)] flex items-center justify-center text-lg sm:text-2xl leading-none select-none font-display"
-                style={{
-                  borderWidth: 2,
-                  borderStyle: "solid",
-                  borderColor: "#C9A227",
-                  left: `${3 * 14}px`,
-                  top: `${3 * 6}px`,
-                }}
-              >
-                <span>+{overflowCount}</span>
-              </span>
-            )}
-          </div>
+            <span>{p.token ?? ""}</span>
+          </span>
         );
       })}
     </div>
