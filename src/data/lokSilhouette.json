@@ -1,0 +1,12 @@
+{
+  "_comment_1": "Frozen right-side corners of the Lok Purusha silhouette, top → bottom. The left side mirrors across the vertical centreline (x' = layout.width - x).",
+  "_comment_2": "Coordinates are in grid units. Apex sits at y = 0 (top edge of row 0) so row 0 cells are enclosed; feet extend below the bottom row into PAD_BOTTOM.",
+  "_comment_3": "To re-tune: open the in-app editor (✏️ Edit Lok shape) → drag the corners → 'Copy JSON' → paste back here.",
+  "corners": [
+    { "x": 6.221, "y": 0 },
+    { "x": 8.478, "y": 5.232 },
+    { "x": 6.587, "y": 9.97 },
+    { "x": 6.866, "y": 10.623 },
+    { "x": 9.909, "y": 19.442 }
+  ]
+}

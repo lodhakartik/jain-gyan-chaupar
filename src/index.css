@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-image: radial-gradient(circle at 20% 20%, rgba(232, 156, 42, 0.12), transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(168, 38, 28, 0.1), transparent 60%);
+  min-height: 100vh;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-xl px-5 py-2.5 font-semibold transition active:scale-95;
+  }
+  .btn-primary {
+    @apply btn bg-crimson text-parchment hover:bg-crimson/90 shadow-md;
+  }
+  .btn-secondary {
+    @apply btn bg-saffron text-ink hover:bg-saffron/90 shadow-md;
+  }
+  .btn-ghost {
+    @apply btn bg-parchment border border-ink/20 hover:bg-ink/5;
+  }
+  .card {
+    @apply rounded-2xl bg-parchment/90 border border-ink/10 shadow-lg backdrop-blur;
+  }
+  .chip {
+    @apply inline-block rounded-full px-2 py-0.5 text-xs font-semibold;
+  }
+}
+
+@keyframes diceShake {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  20% { transform: translateY(-6px) rotate(-12deg); }
+  40% { transform: translateY(2px) rotate(8deg); }
+  60% { transform: translateY(-4px) rotate(-6deg); }
+  80% { transform: translateY(0) rotate(4deg); }
+}
+.dice-rolling { animation: diceShake 0.55s ease-in-out infinite; }

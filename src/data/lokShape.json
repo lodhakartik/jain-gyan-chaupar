@@ -1,0 +1,28 @@
+{
+  "_comment_1": "Lok Purusha row layout. Each row is [leftCount, rightCount] — squares to the LEFT of the central trasanadi gap and squares to the RIGHT. The gap is always 1 column wide.",
+  "_comment_2": "Sum of all (left + right) MUST equal 84 (BOARD_SIZE). Vite hot-reloads on save.",
+  "_comment_3": "Square 1 sits at the BOTTOM row, square 84 at the TOP. Numbering walks bottom-up in an S-pattern, crossing the gap mid-row.",
+  "_comment_4": "A row written as [0,1] (or [1,0]) — i.e. left+right == 1 — collapses to a single cell parked IN the central column. Use this at the apex to stack squares 84 and 83 vertically.",
+  "_comment_5": "Row widths are tuned so every cell sits inside the frozen lokSilhouette.json outline. Max row width is [4,4] (9 columns including gap) — this also sets layout.width.",
+  "rows": [
+    [0, 1],
+    [0, 1],
+    [2, 2],
+    [2, 2],
+    [3, 3],
+    [3, 3],
+    [2, 2],
+    [2, 2],
+    [2, 2],
+    [1, 1],
+    [1, 1],
+    [2, 2],
+    [2, 2],
+    [2, 2],
+    [3, 3],
+    [3, 3],
+    [3, 3],
+    [4, 4],
+    [4, 4]
+  ]
+}
